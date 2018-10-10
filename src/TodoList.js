@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import TodoItem from './TodoItem';
-import './TodoList.css';
+import './style.css';
 class TodoList extends Component {
     constructor(props) {
         super(props);
@@ -13,15 +13,20 @@ class TodoList extends Component {
         this.handleItemDelete = this.handleItemDelete.bind(this);
     }
     handleBtnClick() {
-        this.setState({
+        /* this.setState({
             list: [...this.state.list, this.state.inputValue],
             inputValue: ''
-        });
+        }); */
+        this.setState((prevState) => ({
+            list: [...prevState.list, prevState.inputValue],
+            inputValue: ''
+        }))
     }
     handleInputChange(e) {
-        this.setState({
-            inputValue: e.target.value
-        })
+        const value = e.target.value;
+        this.setState(() => ({
+            inputValue: value
+        }))
     }
     handleItemDelete(index) {
         const list = [...this.state.list];
