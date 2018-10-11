@@ -9,7 +9,15 @@ class TodoItem extends Component {
         const { deleteItem, index } = this.props;
         deleteItem(index);
     }
+    shouldComponentUpdate(nextProps,nextState){
+        if(nextProps.content!==this.props.content){
+            return true;
+        }else{
+            return false;
+        }
+    }
     render() {
+        console.log('child render');
         const { content } = this.props;
         return (
             <div onClick={this.handleDelete}>{content}</div>
