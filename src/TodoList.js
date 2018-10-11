@@ -18,8 +18,8 @@ class TodoList extends Component {
             inputValue: ''
         }))
     }
-    handleInputChange() {
-        const value = this.input.value;
+    handleInputChange(e) {
+        const value = e.target.value;
         this.setState(() => ({
             inputValue: value
         }))
@@ -51,10 +51,9 @@ class TodoList extends Component {
                         className="input"
                         value={this.state.inputValue}
                         onChange={this.handleInputChange}
-                        ref={(input) => { this.input = input }}
                     />
                     <button onClick={this.handleBtnClick}>add</button>
-                    <ul ref={(ul) => { this.ul = ul }}>
+                    <ul>
                         {
                             this.getTodoItem()
                         }
