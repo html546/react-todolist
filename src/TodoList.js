@@ -13,17 +13,10 @@ class TodoList extends Component {
         this.handleItemDelete = this.handleItemDelete.bind(this);
     }
     handleBtnClick() {
-        /* this.setState({
-            list: [...this.state.list, this.state.inputValue],
-            inputValue: ''
-        }); */
         this.setState((prevState) => ({
             list: [...prevState.list, prevState.inputValue],
             inputValue: ''
-        }),()=>{
-            console.log(this.ul.querySelectorAll('div').length)
-        })
-        // console.log(this.ul.querySelectorAll('div').length);
+        }))
     }
     handleInputChange() {
         const value = this.input.value;
@@ -32,10 +25,10 @@ class TodoList extends Component {
         }))
     }
     handleItemDelete(index) {
-        const list = [...this.state.list];
-        list.splice(index, 1);
-        this.setState({
-            list: list
+        this.setState((prevState) => {
+            const list = [...prevState.list];
+            list.splice(index, 1);
+            return { list };
         })
     }
     getTodoItem() {
@@ -49,7 +42,6 @@ class TodoList extends Component {
         })
     }
     render() {
-        console.log('render');
         return (
             <Fragment>
                 <div>
