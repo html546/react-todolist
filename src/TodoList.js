@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { changeInputValueAction, addItemAction, deleteItemAction } from './store/actioncreator';
 const TodoList = (props) => {
     const { inputValue, changeInputValue, handleClick, list, handleDelete } = props;
     return (
@@ -11,7 +12,7 @@ const TodoList = (props) => {
             <ul>
                 {
                     list.map((item, index) => {
-                        return <li onClick={handleDelete.bind(this,index)} key={index}>{item}</li>
+                        return <li onClick={handleDelete.bind(this, index)} key={index}>{item}</li>
                     })
                 }
             </ul>
@@ -48,24 +49,16 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         changeInputValue(e) {
-            const action = {
-                type: 'change_input_value',
-                value: e.target.value
-            };
+            const action = changeInputValueAction(e.target.value);
             // console.log(e.target.value);
             dispatch(action);
         },
         handleClick() {
-            const action = {
-                type: 'add_item'
-            }
+            const action = addItemAction();
             dispatch(action);
         },
         handleDelete(index) {
-            const action = {
-                type: 'delete_item',
-                index: index
-            }
+            const action = deleteItemAction(index);
             dispatch(action);
         }
     }
